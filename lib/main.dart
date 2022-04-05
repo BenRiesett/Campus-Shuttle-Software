@@ -1,4 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'homepage.dart';
+import 'requestPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -6,19 +10,23 @@ void main() {
 
 int estWaitTime = 10;
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+final List rides = [
+  ['Opus Hall', 'Pryzbyla', 4],
+  ['Pryzbyla', 'Dufour Center', 6],
+  ['Gibbons Hall', 'St. Vincent Chapel', 2],
+  ['Brookland Metro', 'Opus Hall', 5],
+  ['Opus Hall', 'Pryzbyla', 4],
+  ['Pryzbyla', 'Dufour Center', 6],
+];
+
+class DriverPage extends StatefulWidget {
+  const DriverPage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<DriverPage> createState() => _DriverPageState();
 }
 
-//HOMEPAGE
-class _HomePageState extends State<HomePage> {
-  String pickupValue = 'Opus Hall';
-  String dropoffValue = 'Opus Hall';
-  String passengers = '1';
-
+class _DriverPageState extends State<DriverPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,11 +35,12 @@ class _HomePageState extends State<HomePage> {
         toolbarHeight: 75,
         backgroundColor: Colors.red[900],
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            SizedBox(width: 11),
             Padding(
               padding: const EdgeInsets.only(right: 20.0),
-              child: Container(
+              child: SizedBox(
                 height: 50,
                 child: Image.asset('lib/icons/cua.png'),
               ),
@@ -47,462 +56,231 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(
-                    color: Colors.blueGrey.shade900,
-                  ),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                height: 400,
-                width: 500,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20.0, bottom: 10.0),
-                      child: Text(
-                        'Request A Ride',
-                        style: TextStyle(
-                          fontFamily: 'Times',
-                          fontSize: 32,
-                          color: Colors.blueGrey.shade900,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 15),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const SizedBox(width: 13),
-                        Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            'Pickup Location:',
-                            style: TextStyle(
-                              fontFamily: 'Times',
-                              fontSize: 18,
-                              color: Colors.blueGrey.shade900,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 15),
-                          decoration: BoxDecoration(
-                            color: Colors.grey[300],
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Theme(
-                            data: Theme.of(context).copyWith(
-                              canvasColor: Colors.grey.shade300,
-                            ),
-                            child: DropdownButton<String>(
-                              value: pickupValue,
-                              icon: Padding(
-                                padding: const EdgeInsets.only(left: 55.0),
-                                child: Icon(Icons.arrow_downward,
-                                    size: 15, color: Colors.blueGrey.shade600),
-                              ),
-                              elevation: 16,
-                              style: TextStyle(
-                                  color: Colors.blueGrey.shade600,
-                                  fontSize: 16),
-                              underline: Container(
-                                height: 2,
-                                color: Colors.blueGrey.shade600,
-                              ),
-                              onChanged: (String? newValue) {
-                                setState(() {
-                                  pickupValue = newValue!;
-                                });
-                              },
-                              items: <String>[
-                                'Opus Hall',
-                                'Pryzbyla',
-                                'Brookland Metro',
-                                'Maloney Hall'
-                              ].map<DropdownMenuItem<String>>((String value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(value),
-                                );
-                              }).toList(),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 25),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            'Drop-off Location:',
-                            style: TextStyle(
-                              fontFamily: 'Times',
-                              fontSize: 18,
-                              color: Colors.blueGrey.shade900,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 15),
-                          decoration: BoxDecoration(
-                            color: Colors.grey[300],
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Theme(
-                            data: Theme.of(context).copyWith(
-                              canvasColor: Colors.grey.shade300,
-                            ),
-                            child: DropdownButton<String>(
-                              value: dropoffValue,
-                              icon: Padding(
-                                padding: const EdgeInsets.only(left: 55.0),
-                                child: Icon(Icons.arrow_downward,
-                                    size: 15, color: Colors.blueGrey.shade600),
-                              ),
-                              elevation: 16,
-                              style: TextStyle(
-                                  color: Colors.blueGrey.shade600,
-                                  fontSize: 16),
-                              underline: Container(
-                                height: 2,
-                                color: Colors.blueGrey.shade600,
-                              ),
-                              onChanged: (String? newValue) {
-                                setState(() {
-                                  dropoffValue = newValue!;
-                                });
-                              },
-                              items: <String>[
-                                'Opus Hall',
-                                'Pryzbyla',
-                                'Brookland Metro',
-                                'Maloney Hall'
-                              ].map<DropdownMenuItem<String>>((String value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(value),
-                                );
-                              }).toList(),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 25),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(width: 52),
-                        Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            'Passengers:',
-                            style: TextStyle(
-                              fontFamily: 'Times',
-                              fontSize: 18,
-                              color: Colors.blueGrey.shade900,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 15),
-                          decoration: BoxDecoration(
-                            color: Colors.grey[300],
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Theme(
-                            data: Theme.of(context).copyWith(
-                              canvasColor: Colors.grey.shade300,
-                            ),
-                            child: DropdownButton<String>(
-                              value: passengers,
-                              icon: Padding(
-                                padding: const EdgeInsets.only(left: 166.0),
-                                child: Icon(Icons.arrow_downward,
-                                    size: 15, color: Colors.blueGrey.shade600),
-                              ),
-                              elevation: 16,
-                              style: TextStyle(
-                                  color: Colors.blueGrey.shade600,
-                                  fontSize: 16),
-                              underline: Container(
-                                height: 2,
-                                color: Colors.blueGrey.shade600,
-                              ),
-                              onChanged: (String? newValue) {
-                                setState(() {
-                                  passengers = newValue!;
-                                });
-                              },
-                              items: <String>[
-                                '1',
-                                '2',
-                                '3',
-                                '4',
-                                '5',
-                                '6',
-                                '7',
-                                '8',
-                                '9',
-                              ].map<DropdownMenuItem<String>>((String value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(value),
-                                );
-                              }).toList(),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 25),
-                    TextButton(
-                      style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.transparent),
-                      ), //REQUEST BUTTON
-                      child: Container(
-                        padding: const EdgeInsets.only(
-                            left: 50, right: 50, top: 8, bottom: 8),
-                        decoration: BoxDecoration(
-                          color: Colors.red[100],
-                          border: Border.all(
-                            color: Colors.blueGrey.shade900,
-                            width: 4,
-                          ),
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        child: Text(
-                          'Request',
-                          style: TextStyle(
-                            fontFamily: 'Times',
-                            fontWeight: FontWeight.bold,
-                            fontSize: 35,
-                            color: Colors.blueGrey.shade900,
-                          ),
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const RequestSentPage()),
-                        );
-                      },
-                    ),
-                  ],
-                ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'Rides:',
+              style: TextStyle(
+                fontFamily: 'Times',
+                fontSize: 32,
+                color: Colors.blueGrey.shade900,
               ),
             ),
-            Padding(
-              padding:
-                  const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(
-                    color: Colors.blueGrey.shade900,
-                  ),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                height: 150,
-                width: 500,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 16, bottom: 5),
-                      child: Text(
-                        'Current Estimated Wait Time:',
-                        style: TextStyle(
-                          fontFamily: 'Times',
-                          fontSize: 27,
-                          color: Colors.blueGrey.shade900,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      estWaitTime.toString() + ' min',
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: rides.length,
+              scrollDirection: Axis.vertical,
+              itemBuilder: (context, index) {
+                return Ride(
+                  pickup: rides[index][0],
+                  dropoff: rides[index][1],
+                  passenger: rides[index][2],
+                  index: index,
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class Ride extends StatefulWidget {
+  final String pickup;
+  final String dropoff;
+  final int passenger;
+  final int index;
+
+  Ride({
+    required this.pickup,
+    required this.dropoff,
+    required this.passenger,
+    required this.index,
+  });
+
+  @override
+  State<Ride> createState() => _RideState();
+}
+
+class _RideState extends State<Ride> {
+  final int waitTime = estWaitTime;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 7.0, left: 8, right: 8),
+      child: TextButton(
+        onPressed: () {
+          showDialog(
+              context: context,
+              builder: (BuildContext context) => ViewRide(
+                  pickup: widget.pickup,
+                  dropoff: widget.dropoff,
+                  passenger: widget.passenger,
+                  index: widget.index));
+        },
+        style: TextButton.styleFrom(padding: EdgeInsets.zero),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border.all(
+              color: Colors.grey.shade500,
+            ),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          height: 65,
+          width: 500,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 18.0),
+                    child: Text(
+                      (widget.index + 1).toString(),
                       style: TextStyle(
                         fontFamily: 'Times',
-                        fontSize: 40,
-                        color: Colors.red.shade900,
+                        fontSize: 35,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.grey[400],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 5.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Need special assistance?',
-                            style: TextStyle(
-                              fontFamily: 'Times',
-                              fontSize: 22,
-                              color: Colors.blueGrey.shade900,
-                            ),
-                          ),
-                          SizedBox(width: 5),
-                          Text(
-                            'Tap Here!',
-                            style: TextStyle(
-                              fontFamily: 'Times',
-                              decoration: TextDecoration.underline,
-                              fontSize: 22,
-                              color: Colors.blue[800],
-                            ),
-                          ),
-                        ],
-                      ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 8.0, vertical: 12),
+                    child: VerticalDivider(
+                      color: Colors.grey[400],
+                      thickness: 2,
                     ),
-                  ],
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Pickup:',
+                        style: TextStyle(
+                          fontFamily: 'Times',
+                          fontSize: 15,
+                          color: Colors.blueGrey.shade900,
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        'Drop-off:',
+                        style: TextStyle(
+                          fontFamily: 'Times',
+                          fontSize: 15,
+                          color: Colors.blueGrey.shade900,
+                        ),
+                      ),
+                      SizedBox(height: 2),
+                    ],
+                  ),
+                  SizedBox(width: 15),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        widget.pickup,
+                        style: TextStyle(
+                          fontFamily: 'Times',
+                          fontSize: 15,
+                          color: Colors.red.shade900,
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        widget.dropoff,
+                        style: TextStyle(
+                          fontFamily: 'Times',
+                          fontSize: 15,
+                          color: Colors.red.shade900,
+                        ),
+                      ),
+                      SizedBox(height: 2),
+                    ],
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  color: Colors.grey[400],
+                  size: 35,
                 ),
               ),
-            ),
-            SizedBox(height: 25),
-            const Text(
-              'Catholic University Office of Transportation and Parking Services',
-              style: TextStyle(
-                fontFamily: 'Times',
-                fontSize: 14,
-              ),
-            ),
-            Text(
-              '202-552-7275',
-              style: TextStyle(
-                fontFamily: 'Times',
-                fontSize: 15,
-                color: Colors.blue[800],
-              ),
-            ),
-            const SizedBox(height: 20),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-//REQUEST SENT PAGE
-class RequestSentPage extends StatefulWidget {
-  const RequestSentPage({Key? key}) : super(key: key);
+class ViewRide extends StatefulWidget {
+  final String pickup;
+  final String dropoff;
+  final int passenger;
+  final int index;
+
+  ViewRide({
+    required this.pickup,
+    required this.dropoff,
+    required this.passenger,
+    required this.index,
+  });
 
   @override
-  State<RequestSentPage> createState() => _RequestSentPageState();
+  State<ViewRide> createState() => _ViewRideState();
 }
 
-class _RequestSentPageState extends State<RequestSentPage> {
+class _ViewRideState extends State<ViewRide> {
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false,
-      child: Scaffold(
-        backgroundColor: Colors.grey[300],
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          toolbarHeight: 75,
-          backgroundColor: Colors.red[900],
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 20.0),
-                child: Container(
-                  height: 50,
-                  child: Image.asset('lib/icons/cua.png'),
-                ),
-              ),
-              const Text(
-                'Campus Shuttle',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Times',
-                  fontSize: 26,
-                ),
-              ),
-            ],
+    return AlertDialog(
+      insetPadding: EdgeInsets.all(10),
+      backgroundColor: Colors.transparent,
+      content: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border.all(
+            color: Colors.blueGrey.shade900,
+            width: 3,
           ),
+          borderRadius: BorderRadius.circular(30),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border.all(
-                color: Colors.blueGrey.shade900,
-              ),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            height: 250,
-            width: 500,
-            child: Column(
+        height: 500,
+        width: 500,
+        child: Column(
+          children: [
+            Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 13.0),
-                  child: Text(
-                    'Success!',
-                    style: TextStyle(
-                      fontFamily: 'Times',
-                      fontWeight: FontWeight.bold,
-                      fontSize: 35,
-                      color: Colors.green[800],
-                    ),
-                  ),
+                  padding: const EdgeInsets.all(8.0),
+                  child: BackButton(),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Container(
-                    child: Column(
-                      children: [
-                        Text(
-                          'Your ride has been requested, please be prepared to \nenter the shuttle upon arrival. The shuttle will depart',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontFamily: 'Times',
-                            fontSize: 16,
-                            color: Colors.blueGrey.shade900,
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              '2 minutes ',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontFamily: 'Times',
-                                fontSize: 16,
-                                color: Colors.red.shade800,
-                              ),
-                            ),
-                            const SizedBox(width: 2),
-                            Text(
-                              'after arrival if rider is not ready to board.',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontFamily: 'Times',
-                                fontSize: 16,
-                                color: Colors.blueGrey.shade900,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                SizedBox(width: 70),
+                Text(
+                  'RIDE ' + (widget.index + 1).toString() + ':',
+                  style: TextStyle(
+                    fontFamily: 'Times',
+                    fontSize: 22,
+                    color: Colors.red.shade900,
                   ),
                 ),
               ],
             ),
-          ),
+            Text(widget.pickup),
+          ],
         ),
       ),
     );
@@ -519,7 +297,18 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-        debugShowCheckedModeBanner: false, home: HomePage());
+    return MaterialApp(
+      theme: ThemeData(
+        // The line below forces the theme to iOS.
+        platform: TargetPlatform.iOS,
+      ),
+      initialRoute: '/requestPage',
+      routes: {
+        '/requestPage': (context) => const HomePage(),
+        '/confirmCancel': (context) => const RequestSentPage(),
+        '/driver': (context) => const DriverPage(),
+      },
+      debugShowCheckedModeBanner: false,
+    );
   }
 }
