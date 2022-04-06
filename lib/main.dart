@@ -17,6 +17,7 @@ final List rides = [
   ['Brookland Metro', 'Opus Hall', 5],
   ['Opus Hall', 'Pryzbyla', 4],
   ['Pryzbyla', 'Dufour Center', 6],
+
 ];
 
 class DriverPage extends StatefulWidget {
@@ -32,7 +33,7 @@ class _DriverPageState extends State<DriverPage> {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
-        toolbarHeight: 75,
+        toolbarHeight: 70,
         backgroundColor: Colors.red[900],
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -247,7 +248,7 @@ class _ViewRideState extends State<ViewRide> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      insetPadding: EdgeInsets.all(10),
+      insetPadding: EdgeInsets.zero,
       backgroundColor: Colors.transparent,
       content: Container(
         decoration: BoxDecoration(
@@ -263,12 +264,12 @@ class _ViewRideState extends State<ViewRide> {
         child: Column(
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: BackButton(),
                 ),
-                SizedBox(width: 70),
                 Text(
                   'RIDE ' + (widget.index + 1).toString() + ':',
                   style: TextStyle(
@@ -277,118 +278,126 @@ class _ViewRideState extends State<ViewRide> {
                     color: Colors.red.shade900,
                   ),
                 ),
+                SizedBox(width: 60),
               ],
             ),
             SizedBox(height: 5),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 15),
+                decoration: BoxDecoration(
+                  color: Colors.grey[300],
+                  border: Border.all(
+                    color: Colors.grey.shade400,
+                    width: 3,
+                  ),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Column(
                   children: [
-                    SizedBox(width: 30),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          'Pickup:',
-                          style: TextStyle(
-                            fontFamily: 'Times',
-                            fontSize: 18,
-                            color: Colors.blueGrey.shade900,
+                        Row(
+                          children: [
+                            SizedBox(width: 20),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Pickup:',
+                                  style: TextStyle(
+                                    fontFamily: 'Times',
+                                    fontSize: 18,
+                                    color: Colors.blueGrey.shade900,
+                                  ),
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  'Drop-off:',
+                                  style: TextStyle(
+                                    fontFamily: 'Times',
+                                    fontSize: 18,
+                                    color: Colors.blueGrey.shade900,
+                                  ),
+                                ),
+                                SizedBox(height: 2),
+                              ],
+                            ),
+                            SizedBox(width: 15),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  widget.pickup,
+                                  style: TextStyle(
+                                    fontFamily: 'Times',
+                                    fontSize: 18,
+                                    color: Colors.red.shade900,
+                                  ),
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  widget.dropoff,
+                                  style: TextStyle(
+                                    fontFamily: 'Times',
+                                    fontSize: 18,
+                                    color: Colors.red.shade900,
+                                  ),
+                                ),
+                                SizedBox(height: 2),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 25),
+                          child: Column(
+                            children: [
+                              SizedBox(height: 7),
+                              SizedBox(
+                                  height: 28,
+                                  child: Image.asset('lib/icons/person.png')
+                              ),
+                              Text(
+                                widget.passenger.toString(),
+                                style: TextStyle(
+                                  fontFamily: 'Times',
+                                  fontSize: 18,
+                                  color: Colors.red.shade900,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        SizedBox(height: 5),
-                        Text(
-                          'Drop-off:',
-                          style: TextStyle(
-                            fontFamily: 'Times',
-                            fontSize: 18,
-                            color: Colors.blueGrey.shade900,
-                          ),
-                        ),
-                        SizedBox(height: 2),
                       ],
                     ),
-                    SizedBox(width: 15),
+                    SizedBox(height: 25),
                     Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          widget.pickup,
+                          'Estimated Wait Time:',
                           style: TextStyle(
                             fontFamily: 'Times',
                             fontSize: 18,
-                            color: Colors.red.shade900,
+                            color: Colors.blueGrey[900],
                           ),
                         ),
-                        SizedBox(height: 5),
                         Text(
-                          widget.dropoff,
+                          estWaitTime.toString() + ' min',
                           style: TextStyle(
                             fontFamily: 'Times',
-                            fontSize: 18,
+                            fontSize: 30,
                             color: Colors.red.shade900,
                           ),
                         ),
-                        SizedBox(height: 2),
                       ],
                     ),
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 35),
-                  child: Column(
-                    children: [
-                      SizedBox(height: 7),
-                      SizedBox(
-                          height: 28,
-                          child: Image.asset('lib/icons/person.png')
-                      ),
-                      Text(
-                        widget.passenger.toString(),
-                        style: TextStyle(
-                          fontFamily: 'Times',
-                          fontSize: 18,
-                          color: Colors.red.shade900,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 25),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 5, horizontal: 70),
-              decoration: BoxDecoration(
-                color: Colors.grey[300],
-                border: Border.all(
-                  color: Colors.grey.shade400,
-                  width: 3,
-                ),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Column(
-                children: [
-                  Text(
-                    'Estimated Wait Time:',
-                    style: TextStyle(
-                      fontFamily: 'Times',
-                      fontSize: 18,
-                      color: Colors.blueGrey[900],
-                    ),
-                  ),
-                  Text(
-                    estWaitTime.toString() + ' min',
-                    style: TextStyle(
-                      fontFamily: 'Times',
-                      fontSize: 30,
-                      color: Colors.red.shade900,
-                    ),
-                  ),
-                ],
               ),
             ),
           ],

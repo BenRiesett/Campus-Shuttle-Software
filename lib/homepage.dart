@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
-        toolbarHeight: 75,
+        toolbarHeight: 70,
         backgroundColor: Colors.red[900],
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
