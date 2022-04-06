@@ -279,7 +279,118 @@ class _ViewRideState extends State<ViewRide> {
                 ),
               ],
             ),
-            Text(widget.pickup),
+            SizedBox(height: 5),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    SizedBox(width: 30),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Pickup:',
+                          style: TextStyle(
+                            fontFamily: 'Times',
+                            fontSize: 18,
+                            color: Colors.blueGrey.shade900,
+                          ),
+                        ),
+                        SizedBox(height: 5),
+                        Text(
+                          'Drop-off:',
+                          style: TextStyle(
+                            fontFamily: 'Times',
+                            fontSize: 18,
+                            color: Colors.blueGrey.shade900,
+                          ),
+                        ),
+                        SizedBox(height: 2),
+                      ],
+                    ),
+                    SizedBox(width: 15),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          widget.pickup,
+                          style: TextStyle(
+                            fontFamily: 'Times',
+                            fontSize: 18,
+                            color: Colors.red.shade900,
+                          ),
+                        ),
+                        SizedBox(height: 5),
+                        Text(
+                          widget.dropoff,
+                          style: TextStyle(
+                            fontFamily: 'Times',
+                            fontSize: 18,
+                            color: Colors.red.shade900,
+                          ),
+                        ),
+                        SizedBox(height: 2),
+                      ],
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 35),
+                  child: Column(
+                    children: [
+                      SizedBox(height: 7),
+                      SizedBox(
+                          height: 28,
+                          child: Image.asset('lib/icons/person.png')
+                      ),
+                      Text(
+                        widget.passenger.toString(),
+                        style: TextStyle(
+                          fontFamily: 'Times',
+                          fontSize: 18,
+                          color: Colors.red.shade900,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 25),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 5, horizontal: 70),
+              decoration: BoxDecoration(
+                color: Colors.grey[300],
+                border: Border.all(
+                  color: Colors.grey.shade400,
+                  width: 3,
+                ),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Column(
+                children: [
+                  Text(
+                    'Estimated Wait Time:',
+                    style: TextStyle(
+                      fontFamily: 'Times',
+                      fontSize: 18,
+                      color: Colors.blueGrey[900],
+                    ),
+                  ),
+                  Text(
+                    estWaitTime.toString() + ' min',
+                    style: TextStyle(
+                      fontFamily: 'Times',
+                      fontSize: 30,
+                      color: Colors.red.shade900,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
