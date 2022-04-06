@@ -17,7 +17,6 @@ final List rides = [
   ['Brookland Metro', 'Opus Hall', 5],
   ['Opus Hall', 'Pryzbyla', 4],
   ['Pryzbyla', 'Dufour Center', 6],
-
 ];
 
 class DriverPage extends StatefulWidget {
@@ -274,14 +273,14 @@ class _ViewRideState extends State<ViewRide> {
                   'RIDE ' + (widget.index + 1).toString() + ':',
                   style: TextStyle(
                     fontFamily: 'Times',
-                    fontSize: 22,
+                    fontSize: 25,
                     color: Colors.red.shade900,
                   ),
                 ),
                 SizedBox(width: 60),
               ],
             ),
-            SizedBox(height: 5),
+            SizedBox(height: 2),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
               child: Container(
@@ -360,8 +359,7 @@ class _ViewRideState extends State<ViewRide> {
                               SizedBox(height: 7),
                               SizedBox(
                                   height: 28,
-                                  child: Image.asset('lib/icons/person.png')
-                              ),
+                                  child: Image.asset('lib/icons/person.png')),
                               Text(
                                 widget.passenger.toString(),
                                 style: TextStyle(
@@ -400,12 +398,95 @@ class _ViewRideState extends State<ViewRide> {
                 ),
               ),
             ),
+            ArrivedAtButton(),
+            CancelRideButton(),
           ],
         ),
       ),
     );
   }
 }
+
+//ARRIVED AT PICKUP WIDGET
+class ArrivedAtButton extends StatefulWidget {
+  const ArrivedAtButton({Key? key}) : super(key: key);
+
+  @override
+  State<ArrivedAtButton> createState() => _ArrivedAtButtonState();
+}
+
+class _ArrivedAtButtonState extends State<ArrivedAtButton> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 15, left: 25, right: 25),
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 15),
+        decoration: BoxDecoration(
+          color: Colors.greenAccent[100],
+          border: Border.all(
+            color: Colors.green.shade400,
+            width: 3,
+          ),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        width: 500,
+        child: Text(
+          'Arrived at Pickup',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontFamily: 'Times',
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+            color: Colors.green[700],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CancelRideButton extends StatefulWidget {
+  const CancelRideButton({Key? key}) : super(key: key);
+
+  @override
+  State<CancelRideButton> createState() => _CancelRideButtonState();
+}
+
+class _CancelRideButtonState extends State<CancelRideButton> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 7, left: 25, right: 25),
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 6),
+        decoration: BoxDecoration(
+          color: Colors.red[100],
+          border: Border.all(
+            color: Colors.red.shade400,
+            width: 3,
+          ),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        width: 500,
+        child: Text(
+          'Cancel Ride',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontFamily: 'Times',
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+            color: Colors.red[700],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
