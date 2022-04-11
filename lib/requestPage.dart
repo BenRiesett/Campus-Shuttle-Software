@@ -1,5 +1,7 @@
 //REQUEST SENT PAGE
 import 'package:flutter/material.dart';
+import 'dart:async';
+import 'package:intl/intl.dart';
 
 import 'main.dart';
 
@@ -11,12 +13,13 @@ class RequestSentPage extends StatefulWidget {
 }
 
 class _RequestSentPageState extends State<RequestSentPage> {
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-        backgroundColor: Colors.grey[300],
+        backgroundColor: Colors.grey[200],
         appBar: AppBar(
           automaticallyImplyLeading: false,
           toolbarHeight: 70,
@@ -189,6 +192,13 @@ class _RequestSentPageState extends State<RequestSentPage> {
                         ),
                       ],
                     ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 20.0, top: 8),
+                  child: SizedBox(
+                    height: 120,
+                    child: Image.asset('lib/icons/shuttle.png'),
                   ),
                 ),
               ],

@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import 'main.dart';
 import 'requestPage.dart';
@@ -15,6 +17,37 @@ class _HomePageState extends State<HomePage> {
   String pickupValue = 'Opus Hall';
   String dropoffValue = 'Opus Hall';
   String passengers = '1';
+  String _timeString = DateFormat('kk').format(DateTime.now()).toString();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Timer.periodic(const Duration(minutes: 15), (Timer t) => _getTime());
+  }
+
+  void _getTime() {
+    final String formattedDateTime =
+    DateFormat('kk').format(DateTime.now()).toString();
+    setState(() {
+      _timeString = formattedDateTime;
+      print(_timeString);
+    });
+  }
+
+  String _getTextGreeting() {
+    int time = int.parse(_timeString);
+    if(time > 17) {
+      return 'Good Evening, Ben';
+    }
+    else if(time > 12) {
+      return 'Good Afternoon, Ben';
+    }
+    else {
+      return 'Good Morning, Ben';
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +56,7 @@ class _HomePageState extends State<HomePage> {
       // onWillPop: () async => false,
       // child:
       Scaffold(
-        backgroundColor: Colors.grey[300],
+        backgroundColor: Colors.grey[200],
         appBar: AppBar(
           automaticallyImplyLeading: false,
           toolbarHeight: 70,
@@ -52,6 +85,17 @@ class _HomePageState extends State<HomePage> {
         body: SingleChildScrollView(
           child: Column(
             children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 15, bottom: 3),
+                child: Text(
+                  _getTextGreeting(),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 22,
+                    color: Colors.blueGrey.shade900,
+                  ),
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(

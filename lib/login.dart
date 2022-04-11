@@ -11,7 +11,8 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
         automaticallyImplyLeading: false,
         toolbarHeight: 70,
