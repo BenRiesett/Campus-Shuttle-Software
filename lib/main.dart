@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'homepage.dart';
+import 'login.dart';
 import 'requestPage.dart';
 
 void main() {
@@ -502,12 +503,18 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         // The line below forces the theme to iOS.
         platform: TargetPlatform.iOS,
+          primarySwatch: Colors.red,
+          textTheme: Theme.of(context).textTheme.apply(fontFamily: 'Times')
       ),
-      initialRoute: '/requestPage',
+      initialRoute: '/login',
       routes: {
-        '/requestPage': (context) => const HomePage(),
+        //  '/admin': (context) => const AdminPage(),
+          '/login': (context) => const LoginPage(),
+          //'/map': (context) => const MapScreen(),
+          '/driver': (context) => const DriverPage(),
+          //'/requestStatus': (context) => const RequestStatusPage(),
+        '/requestRide': (context) => const HomePage(),
         '/confirmCancel': (context) => const RequestSentPage(),
-        '/driver': (context) => const DriverPage(),
       },
       debugShowCheckedModeBanner: false,
     );
