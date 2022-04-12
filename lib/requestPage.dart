@@ -60,7 +60,6 @@ class _RequestSentPageState extends State<RequestSentPage> {
                       ),
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    height: 240,
                     width: 500,
                     child: Column(
                       children: [
@@ -80,44 +79,55 @@ class _RequestSentPageState extends State<RequestSentPage> {
                           padding: const EdgeInsets.symmetric(horizontal: 25.0),
                           child: Column(
                             children: [
-                              Text(
-                                'Your ride has been requested, please be prepared to \nenter the shuttle upon arrival. The shuttle will depart',
+                              RichText(
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontFamily: 'Times',
-                                  fontSize: 16,
-                                  color: Colors.blueGrey.shade900,
+                                text: TextSpan(
+                                  text: 'Your ride has been requested, please be prepared to enter the shuttle upon arrival. The shuttle will depart ',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: 'times',
+                                    color: Colors.blueGrey.shade900,
+                                  ),
+                                  children: <TextSpan>[
+                                    TextSpan(text: '2 minutes ', style: TextStyle(color: Colors.red.shade900)),
+                                    TextSpan(text: 'after arrival if rider is not ready to board.',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.blueGrey.shade900,
+                                    ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '2 minutes ',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontFamily: 'Times',
-                                      fontSize: 16,
-                                      color: Colors.red.shade800,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 2),
-                                  Text(
-                                    'after arrival if rider is not ready to board.',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontFamily: 'Times',
-                                      fontSize: 16,
-                                      color: Colors.blueGrey.shade900,
-                                    ),
-                                  ),
-                                ],
-                              ),
+                              // Row(
+                              //   mainAxisAlignment: MainAxisAlignment.center,
+                              //   children: [
+                              //     Text(
+                              //       '2 minutes ',
+                              //       textAlign: TextAlign.center,
+                              //       style: TextStyle(
+                              //         fontFamily: 'Times',
+                              //         fontSize: 16,
+                              //         color: Colors.red.shade800,
+                              //       ),
+                              //     ),
+                              //     const SizedBox(width: 2),
+                              //     Text(
+                              //       'after arrival if rider is not ready to board.',
+                              //       textAlign: TextAlign.center,
+                              //       style: TextStyle(
+                              //         fontFamily: 'Times',
+                              //         fontSize: 16,
+                              //         color: Colors.blueGrey.shade900,
+                              //       ),
+                              //     ),
+                              //   ],
+                              // ),
                             ],
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 20.0),
+                          padding: const EdgeInsets.only(top: 20.0, bottom: 20),
                           child: TextButton(
                             style: ButtonStyle(
                               backgroundColor:

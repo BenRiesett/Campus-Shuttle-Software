@@ -147,37 +147,39 @@ class _HomePageState extends State<HomePage> {
                               data: Theme.of(context).copyWith(
                                 canvasColor: Colors.grey.shade300,
                               ),
-                              child: DropdownButton<String>(
-                                value: pickupValue,
-                                icon: Padding(
-                                  padding: const EdgeInsets.only(left: 55.0),
-                                  child: Icon(Icons.arrow_downward,
+                              child: Container(
+                                height: 45,
+                                width: 160,
+                                child: DropdownButton<String>(
+                                  isExpanded: true,
+                                  value: pickupValue,
+                                  icon: Icon(Icons.arrow_downward,
                                       size: 15, color: Colors.blueGrey.shade600),
-                                ),
-                                elevation: 16,
-                                style: TextStyle(
+                                  elevation: 16,
+                                  style: TextStyle(
+                                      color: Colors.blueGrey.shade600,
+                                      fontSize: 16),
+                                  underline: Container(
+                                    height: 2,
                                     color: Colors.blueGrey.shade600,
-                                    fontSize: 16),
-                                underline: Container(
-                                  height: 2,
-                                  color: Colors.blueGrey.shade600,
+                                  ),
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      pickupValue = newValue!;
+                                    });
+                                  },
+                                  items: <String>[
+                                    'Opus Hall',
+                                    'Pryzbyla',
+                                    'Brookland Metro',
+                                    'Maloney Hall'
+                                  ].map<DropdownMenuItem<String>>((String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value),
+                                    );
+                                  }).toList(),
                                 ),
-                                onChanged: (String? newValue) {
-                                  setState(() {
-                                    pickupValue = newValue!;
-                                  });
-                                },
-                                items: <String>[
-                                  'Opus Hall',
-                                  'Pryzbyla',
-                                  'Brookland Metro',
-                                  'Maloney Hall'
-                                ].map<DropdownMenuItem<String>>((String value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Text(value),
-                                  );
-                                }).toList(),
                               ),
                             ),
                           ),
@@ -208,37 +210,39 @@ class _HomePageState extends State<HomePage> {
                               data: Theme.of(context).copyWith(
                                 canvasColor: Colors.grey.shade300,
                               ),
-                              child: DropdownButton<String>(
-                                value: dropoffValue,
-                                icon: Padding(
-                                  padding: const EdgeInsets.only(left: 55.0),
-                                  child: Icon(Icons.arrow_downward,
+                              child: Container(
+                                height: 45,
+                                width: 160,
+                                child: DropdownButton<String>(
+                                  isExpanded: true,
+                                  value: dropoffValue,
+                                  icon: Icon(Icons.arrow_downward,
                                       size: 15, color: Colors.blueGrey.shade600),
-                                ),
-                                elevation: 16,
-                                style: TextStyle(
+                                  elevation: 16,
+                                  style: TextStyle(
+                                      color: Colors.blueGrey.shade600,
+                                      fontSize: 16),
+                                  underline: Container(
+                                    height: 2,
                                     color: Colors.blueGrey.shade600,
-                                    fontSize: 16),
-                                underline: Container(
-                                  height: 2,
-                                  color: Colors.blueGrey.shade600,
+                                  ),
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      dropoffValue = newValue!;
+                                    });
+                                  },
+                                  items: <String>[
+                                    'Opus Hall',
+                                    'Pryzbyla',
+                                    'Brookland Metro',
+                                    'Maloney Hall'
+                                  ].map<DropdownMenuItem<String>>((String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value),
+                                    );
+                                  }).toList(),
                                 ),
-                                onChanged: (String? newValue) {
-                                  setState(() {
-                                    dropoffValue = newValue!;
-                                  });
-                                },
-                                items: <String>[
-                                  'Opus Hall',
-                                  'Pryzbyla',
-                                  'Brookland Metro',
-                                  'Maloney Hall'
-                                ].map<DropdownMenuItem<String>>((String value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Text(value),
-                                  );
-                                }).toList(),
                               ),
                             ),
                           ),
@@ -270,42 +274,44 @@ class _HomePageState extends State<HomePage> {
                               data: Theme.of(context).copyWith(
                                 canvasColor: Colors.grey.shade300,
                               ),
-                              child: DropdownButton<String>(
-                                value: passengers,
-                                icon: Padding(
-                                  padding: const EdgeInsets.only(left: 166.0),
-                                  child: Icon(Icons.arrow_downward,
+                              child: Container(
+                                height: 45,
+                                width: 160,
+                                child: DropdownButton<String>(
+                                  isExpanded: true,
+                                  value: passengers,
+                                  icon: Icon(Icons.arrow_downward,
                                       size: 15, color: Colors.blueGrey.shade600),
-                                ),
-                                elevation: 16,
-                                style: TextStyle(
+                                  elevation: 16,
+                                  style: TextStyle(
+                                      color: Colors.blueGrey.shade600,
+                                      fontSize: 16),
+                                  underline: Container(
+                                    height: 2,
                                     color: Colors.blueGrey.shade600,
-                                    fontSize: 16),
-                                underline: Container(
-                                  height: 2,
-                                  color: Colors.blueGrey.shade600,
+                                  ),
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      passengers = newValue!;
+                                    });
+                                  },
+                                  items: <String>[
+                                    '1',
+                                    '2',
+                                    '3',
+                                    '4',
+                                    '5',
+                                    '6',
+                                    '7',
+                                    '8',
+                                    '9',
+                                  ].map<DropdownMenuItem<String>>((String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value),
+                                    );
+                                  }).toList(),
                                 ),
-                                onChanged: (String? newValue) {
-                                  setState(() {
-                                    passengers = newValue!;
-                                  });
-                                },
-                                items: <String>[
-                                  '1',
-                                  '2',
-                                  '3',
-                                  '4',
-                                  '5',
-                                  '6',
-                                  '7',
-                                  '8',
-                                  '9',
-                                ].map<DropdownMenuItem<String>>((String value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Text(value),
-                                  );
-                                }).toList(),
                               ),
                             ),
                           ),
